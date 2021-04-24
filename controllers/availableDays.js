@@ -1,5 +1,3 @@
-const data = require('../db/mock.json')
-
 const loopDays = (inDay, outDay) => {
     const days = [];
     const lastDay = new Date(outDay)
@@ -10,7 +8,7 @@ const loopDays = (inDay, outDay) => {
     return days;
 }
 
-const checkAvailability = () => {
+const checkAvailability = (data) => {
     const today = new Date();
     const year = today.getFullYear();
     const month = today.getMonth();
@@ -26,7 +24,7 @@ const checkAvailability = () => {
     }
 
     // get dates already scheduled
-    data.room.schedules.map(item => {
+    data.map(item => {
         const days = loopDays(item.checkIn, item.checkOut);
         scheduledDays.push(...days)
     })

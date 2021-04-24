@@ -1,6 +1,8 @@
 const express = require('express');
 const app = express();
 const { checkAvailability } = require('./controllers/availableDays');
+const { getScheduled } = require('./controllers/getScheduled');
+require('./config/db');
 
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -9,11 +11,12 @@ app.use(function(req, res, next) {
   next();
  });
 
- app.get('/api/checkAvailability', (req, res) => {
-    const availableDays = checkAvailability();
+ app.get('/api/checkAvailability', async (req, res) => {
+    const scheduled = await getScheduled();
+    const availableDays = checkAvailability(scheduled);
     res.json(availableDays);
  });
- 
+
 const port = 8081;
  
 app.listen(port, () => {
