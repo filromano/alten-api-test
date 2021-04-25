@@ -5,7 +5,7 @@ const uuid = require('uuid');
 const scheduleSchema = new Schema({
     id: {
         type: String,
-        default: uuid.v4()
+        default: uuid.v4
     },
     checkIn: {
         type: String,
