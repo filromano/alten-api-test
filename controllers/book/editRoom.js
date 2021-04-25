@@ -20,24 +20,28 @@ const editRoom = async ({checkIn, checkOut }, id) => {
             break;
         case 'success':
             const editResponse = await editSchedule(id, checkIn, checkOut, days);
-            if (editResponse.ok > 0 && editResponse.nModified > 0) {
-                status = 200;
-                message = 'Reservation modified';
-                args = {
-                    checkIn,
-                    checkOut
-                };
-            } else if (editResponse.nModified === 0 && editResponse.ok > 0) {
-                    status = 200;
-                    message = 'Reservation kept the same value';
+            if (editResponse.status === 200) {
+                status = editResponse.status;
+                if (editResponse.data.ok > 0 && editResponse.data.nModified > 0) {
+                    message = 'Reservation modified';
                     args = {
                         checkIn,
                         checkOut
                     };
+                } else if (editResponse.data.nModified === 0 && editResponse.data.ok > 0) {
+                        message = 'Reservation kept the same value';
+                        args = {
+                            checkIn,
+                            checkOut
+                        };
+                }
+            } else if (editResponse.status === 400) {
+                status = editResponse.status
+                message = editResponse.message
             } else {
                 status = 404;
                 message = 'No Reservation found';
-            };
+            }
             break;
         default:
             break;

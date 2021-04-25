@@ -43,12 +43,19 @@ const cancelSchedule = async (id) => {
 
 const editSchedule = async (id, checkIn, checkOut, days) => {
     try {
-        const edit = await scheduleModel.updateOne({ id }, { checkIn, checkOut, days });
-        console.log(edit)
-        return edit;
+        const edit = await scheduleModel.updateOne({ id },
+            { checkIn, checkOut, days },
+            { runValidators: true });
+        return {
+            status: 200,
+            data: edit
+        };
     }
     catch(err) {
-        return err;
+        return {
+            status: 400,
+            message: err.errors.days.properties.message
+        };
     }
 }
 
