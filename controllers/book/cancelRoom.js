@@ -6,13 +6,13 @@ const cancelRoom = async (id) => {
         return {
             status: 200,
             message: 'Reservation canceled'
-        }
+        };
     } else {
         return {
             status: 400,
             message: 'No Reservation found'
         }
-    }
-}
+    };
+};
 
 module.exports = cancelRoom;

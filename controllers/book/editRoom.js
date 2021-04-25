@@ -15,7 +15,7 @@ const editRoom = async ({checkIn, checkOut }, id) => {
 
     //change it to string to compare
     const availableDaysString = availableDays.map((item) => item.toUTCString());
-    const isAvailableDays = availableDaysString.filter(item => scheduleDays.includes(item))
+    const isAvailableDays = availableDaysString.filter(item => scheduleDays.includes(item));
 
     //validate date
     if(checkIn > checkOut) {
@@ -23,12 +23,12 @@ const editRoom = async ({checkIn, checkOut }, id) => {
         message = 'Sorry check in date has to be before check out date';
     } else if (scheduleDays.length > isAvailableDays.length) {
         status = 400;
-        const notAvailableDays = scheduleDays.filter((item) => !isAvailableDays.includes(item))
-        args = notAvailableDays
-        message = 'You have days that are not available'
+        const notAvailableDays = scheduleDays.filter((item) => !isAvailableDays.includes(item));
+        args = notAvailableDays;
+        message = 'You have days that are not available';
     } else {
         //insert dates into db, there is also a check for max days in db
-        const response = await editSchedule(id, checkIn, checkOut, days)
+        const response = await editSchedule(id, checkIn, checkOut, days);
         if (response.nModified > 0) {
             return {
                 status: 200,
@@ -39,7 +39,7 @@ const editRoom = async ({checkIn, checkOut }, id) => {
                 status: 400,
                 message: 'No Reservation found'
             }
-        }
+        };
     }
 
     return {
@@ -47,6 +47,6 @@ const editRoom = async ({checkIn, checkOut }, id) => {
         message,
         args
     }
-}
+};
 
 module.exports = editRoom;
