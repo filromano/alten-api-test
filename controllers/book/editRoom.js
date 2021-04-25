@@ -4,6 +4,7 @@ const { editSchedule } = require('../schedulesDB/');
 const editRoom = async ({checkIn, checkOut }, id) => {
     let status;
     let message;
+    let args;
 
     const { info, data, days } = await verifyNewSchedule(checkIn, checkOut, id);
 
