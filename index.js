@@ -2,6 +2,8 @@ const express = require('express');
 const app = express();
 const { checkAvailability } = require('./controllers/availableDays');
 const { bookRoom } = require('./controllers/bookRoom');
+const { cancelRoom } = require('./controllers/cancelRoom');
+
 require('./config/db');
 
 app.use(express.urlencoded({ extended: true }));
@@ -21,6 +23,11 @@ app.use(function(req, res, next) {
  app.post('/api/bookRoom', async (req, res) => {
     const { message, status, args } = await bookRoom(req.body);
     res.status(status).json({message, args})
+ });
+
+ app.delete('/api/cancelBook/:id', async (req, res) => {
+    const { status, message } = await cancelRoom(req.params.id)
+    res.status(status).send(message)
  })
 
 const port = 8081;

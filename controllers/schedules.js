@@ -1,6 +1,5 @@
 const scheduleSchema = require('../Schema/Hotel');
-const mongoose = require('mongoose')
-
+const mongoose = require('mongoose');
 
 const scheduleModel = mongoose.model('schedule', scheduleSchema)
 
@@ -28,5 +27,15 @@ const insertSchedule = async (checkIn, checkOut, days) => {
     }
 }
 
+const cancelSchedule = async (id) => {
+    try {
+        const remove = await scheduleModel.deleteOne({id});
+        return remove
+    }
+    catch(err) {
+        return err
+    }
+}
 
-module.exports = { getScheduled, insertSchedule };
+
+module.exports = { getScheduled, insertSchedule, cancelSchedule };
