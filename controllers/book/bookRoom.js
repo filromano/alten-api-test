@@ -19,8 +19,9 @@ const bookRoom = async ({ checkIn, checkOut }) => {
             message = 'Sorry check in date has to be before check out date';
         case 'success':
             const insertResponse = await insertSchedule(checkIn, checkOut, days);
-            message = insertResponse.message;
+            args = insertResponse.args;
             status = insertResponse.status;
+            message = insertResponse.message;
             break;
         default:
             break;

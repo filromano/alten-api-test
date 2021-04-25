@@ -19,7 +19,8 @@ const insertSchedule = async (checkIn, checkOut, days) => {
         const saveUser = await dates.save();
         return {
             status: 201,
-            message: saveUser
+            args: saveUser,
+            message: 'Rerservation success.'
         };
     }
     catch(err) {

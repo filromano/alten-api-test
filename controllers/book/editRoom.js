@@ -22,6 +22,10 @@ const editRoom = async ({checkIn, checkOut }, id) => {
             if (editResponse.nModified > 0) {
                     status = 200;
                     message = 'Reservation modified';
+                    args = {
+                        checkIn,
+                        checkOut
+                    };
             } else {
                 status = 400;
                 message = 'No Reservation found';
