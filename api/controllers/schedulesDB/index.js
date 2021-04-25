@@ -1,5 +1,6 @@
 const scheduleSchema = require('../../Schema/Hotel');
 const mongoose = require('mongoose');
+const e = require('express');
 
 const scheduleModel = mongoose.model('schedule', scheduleSchema);
 
@@ -43,11 +44,17 @@ const cancelSchedule = async (id) => {
 
 const editSchedule = async (id, checkIn, checkOut, days) => {
     try {
+        let status;
         const edit = await scheduleModel.updateOne({ id },
             { checkIn, checkOut, days },
             { runValidators: true });
+        if (edit.n > 0) {
+            status = 200;
+        } else {
+            status = 404;
+        };
         return {
-            status: 200,
+            status,
             data: edit
         };
     }
