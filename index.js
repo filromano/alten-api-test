@@ -1,9 +1,6 @@
 const express = require('express');
 const app = express();
-const { checkAvailability } = require('./controllers/availableDays');
-const { bookRoom } = require('./controllers/bookRoom');
-const { cancelRoom } = require('./controllers/cancelRoom');
-const { editRoom } = require('./controllers/editRoom');
+const routes = require('./routes');
 
 require('./config/db');
 
@@ -16,25 +13,7 @@ app.use(function(req, res, next) {
   next();
  });
 
- app.get('/api/checkAvailability', async (req, res) => {
-    const availableDays = await checkAvailability();
-    res.json(availableDays);
- });
-
- app.post('/api/bookRoom', async (req, res) => {
-    const { message, status, args } = await bookRoom(req.body);
-    res.status(status).json({message, args})
- });
-
- app.delete('/api/cancelBook/:id', async (req, res) => {
-    const { status, message } = await cancelRoom(req.params.id)
-    res.status(status).send(message)
- })
-
- app.put('/api/editBook/:id', async (req, res) => {
-    const { message, status, args } = await editRoom(req.body, req.params.id);
-    res.status(status).json({message, args})
- })
+ app.use('/api', routes);
 
 const port = 8081;
  
