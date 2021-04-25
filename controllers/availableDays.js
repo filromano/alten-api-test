@@ -1,8 +1,8 @@
 const { loopDays } = require('./common');
 const { getScheduled } = require('./schedules');
 
-const checkAvailability = async () => {
-    const data = await getScheduled();
+const checkAvailability = async (id) => {
+    const data = await getScheduled(id);
     const today = new Date();
     const year = today.getFullYear();
     const month = today.getMonth();

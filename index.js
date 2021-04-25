@@ -3,6 +3,7 @@ const app = express();
 const { checkAvailability } = require('./controllers/availableDays');
 const { bookRoom } = require('./controllers/bookRoom');
 const { cancelRoom } = require('./controllers/cancelRoom');
+const { editRoom } = require('./controllers/editRoom');
 
 require('./config/db');
 
@@ -28,6 +29,11 @@ app.use(function(req, res, next) {
  app.delete('/api/cancelBook/:id', async (req, res) => {
     const { status, message } = await cancelRoom(req.params.id)
     res.status(status).send(message)
+ })
+
+ app.put('/api/editBook/:id', async (req, res) => {
+    const { message, status, args } = await editRoom(req.body, req.params.id);
+    res.status(status).json({message, args})
  })
 
 const port = 8081;

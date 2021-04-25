@@ -3,11 +3,14 @@ const mongoose = require('mongoose');
 
 const scheduleModel = mongoose.model('schedule', scheduleSchema)
 
-const getScheduled = async () => {
-    const schedules = await scheduleModel.find((err, schedule) => {
-        return schedule
-    })
-    return schedules;
+const getScheduled = async (id) => {
+    try {
+        const schedules = await scheduleModel.find({id: {$ne: id}});
+        return schedules
+    }
+    catch(err) {
+        return err
+    }
 }
 
 const insertSchedule = async (checkIn, checkOut, days) => {
@@ -37,5 +40,15 @@ const cancelSchedule = async (id) => {
     }
 }
 
+const editSchedule = async (id, checkIn, checkOut, days) => {
+    try {
+        const edit = await scheduleModel.updateOne({ id }, { checkIn, checkOut, days });
+        return edit
+    }
+    catch(err) {
+        return err
+    }
+}
 
-module.exports = { getScheduled, insertSchedule, cancelSchedule };
+
+module.exports = { getScheduled, insertSchedule, cancelSchedule, editSchedule };

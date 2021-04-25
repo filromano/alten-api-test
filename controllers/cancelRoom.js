@@ -2,7 +2,6 @@ const { cancelSchedule } = require('./schedules');
 
 const cancelRoom = async (id) => {
     const response = await cancelSchedule(id);
-    console.log(response)
     if (response.deleteCount > 0) {
         return {
             status: 200,
