@@ -17,6 +17,7 @@ const editRoom = async ({checkIn, checkOut }, id) => {
         case 'checkInBigger':
             status = 400;
             message = 'Sorry check in date has to be before check out date';
+            break;
         case 'success':
             const editResponse = await editSchedule(id, checkIn, checkOut, days);
             if (editResponse.nModified > 0) {
@@ -27,7 +28,7 @@ const editRoom = async ({checkIn, checkOut }, id) => {
                         checkOut
                     };
             } else {
-                status = 400;
+                status = 404;
                 message = 'No Reservation found';
             };
             break;

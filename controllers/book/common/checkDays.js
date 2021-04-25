@@ -50,6 +50,7 @@ const verifyNewSchedule = async (checkIn, checkOut, id) => {
             info: 'checkInBigger',
             data: []
         }
+        return response;
     } else if (scheduleDays.length > isAvailableDays.length) {
         const notAvailableDays = scheduleDays.filter((item) => !isAvailableDays.includes(item));
         response = {

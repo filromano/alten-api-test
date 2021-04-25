@@ -2,7 +2,6 @@ const { cancelSchedule } = require('../schedulesDB/');
 
 const cancelRoom = async (id) => {
     const response = await cancelSchedule(id);
-    console.log(response)
     if (response.deletedCount > 0) {
         return {
             status: 200,
@@ -10,7 +9,7 @@ const cancelRoom = async (id) => {
         };
     } else {
         return {
-            status: 400,
+            status: 404,
             message: 'No Reservation found'
         }
     };
