@@ -1,9 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const { checkAvailability } = require('../controllers/availableDays');
-const { bookRoom } = require('../controllers/bookRoom');
-const { cancelRoom } = require('../controllers/cancelRoom');
-const { editRoom } = require('../controllers/editRoom');
+const { 
+    checkAvailability,
+    bookRoom,
+    cancelRoom,
+    editRoom } = require('../controllers/book/');
 
 router.get('/availability', async (req, res) => {
     const availableDays = await checkAvailability();

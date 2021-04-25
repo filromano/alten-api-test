@@ -1,4 +1,4 @@
-const { cancelSchedule } = require('./schedules');
+const { cancelSchedule } = require('../schedulesDB/');
 
 const cancelRoom = async (id) => {
     const response = await cancelSchedule(id);
@@ -15,4 +15,4 @@ const cancelRoom = async (id) => {
     }
 }
 
-module.exports = { cancelRoom }
+module.exports = cancelRoom;

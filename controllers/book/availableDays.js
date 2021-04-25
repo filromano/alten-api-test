@@ -1,5 +1,5 @@
-const { loopDays } = require('./common');
-const { getScheduled } = require('./schedules');
+const { loopDays } = require('../common');
+const { getScheduled } = require('../schedulesDB/');
 
 const checkAvailability = async (id) => {
     const data = await getScheduled(id);
@@ -31,4 +31,5 @@ const checkAvailability = async (id) => {
     return availableDays;
 };
 
-module.exports = { checkAvailability }
+module.exports = checkAvailability;
+

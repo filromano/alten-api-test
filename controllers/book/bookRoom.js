@@ -1,12 +1,12 @@
-const { loopDays } = require('./common');
-const { checkAvailability } = require('./availableDays');
-const { editSchedule } = require('./schedules');
+const { loopDays } = require('../common');
+const checkAvailability = require('./availableDays');
+const { insertSchedule } = require('../schedulesDB/');
 
-const editRoom = async ({checkIn, checkOut }, id) => {
+const bookRoom = async ({ checkIn, checkOut }) => {
     let status;
     let message;
     let args = [];
-    const availableDays = await checkAvailability(id);
+    const availableDays = await checkAvailability();
 
     // get all days between in and out
     const scheduleDays = loopDays(checkIn, checkOut);
@@ -28,18 +28,9 @@ const editRoom = async ({checkIn, checkOut }, id) => {
         message = 'You have days that are not available'
     } else {
         //insert dates into db, there is also a check for max days in db
-        const response = await editSchedule(id, checkIn, checkOut, days)
-        if (response.nModified > 0) {
-            return {
-                status: 200,
-                message: 'Reservation modified'
-            }
-        } else {
-            return {
-                status: 400,
-                message: 'No Reservation found'
-            }
-        }
+        const response = await insertSchedule(checkIn, checkOut, days)
+        status = response.status;
+        message = response.message;
     }
 
     return {
@@ -49,4 +40,4 @@ const editRoom = async ({checkIn, checkOut }, id) => {
     }
 }
 
-module.exports = { editRoom }
+module.exports = bookRoom;
