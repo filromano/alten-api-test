@@ -64,11 +64,11 @@ POST http://localhost:8081/api/book/add
 {
     "message": "Rerservation success.",
     "args": {
-        "id": "992ae25b-c0cf-4a17-851f-b28df27476a5",
-        "_id": "608593c92e6e1a122daedc61",
-        "checkIn": "2021-05-11T00:00:00.000Z",
-        "checkOut": "2021-05-12T00:00:00.000Z",
+        "_id": "6085f149eb575323c01d8eff",
+        "checkIn": "2021-05-08T00:00:00.000Z",
+        "checkOut": "2021-05-09T00:00:00.000Z",
         "days": 2,
+        "id": "277f77a0-53e7-4b81-8113-c7b1aea6032c",
         "__v": 0
     }
 }
@@ -82,7 +82,7 @@ PUT http://localhost:8081/api/book/edit/:id
 ```javascript
 {
     "checkIn": "2021-05-08T00:00:00.000Z",
-    "checkOut": "2021-05-09T00:00:00.000Z"
+    "checkOut": "2021-05-10T00:00:00.000Z"
 }
 ```
 
@@ -91,8 +91,8 @@ PUT http://localhost:8081/api/book/edit/:id
 {
     "message": "Reservation modified",
     "args": {
-        "checkIn": "2021-05-12T00:00:00.000Z",
-        "checkOut": "2021-05-13T00:00:00.000Z"
+        "checkIn": "2021-05-08T00:00:00.000Z",
+        "checkOut": "2021-05-10T00:00:00.000Z"
     }
 }
 ```
