@@ -103,5 +103,4 @@ DELETE http://localhost:8081/api/book/cancel/:id
 }
 ```
 
-
-
+PS: Use `id` not `_id`

@@ -18,7 +18,7 @@ router.post('/add', async (req, res) => {
 
  router.delete('/cancel/:id', async (req, res) => {
     const { status, message } = await cancelRoom(req.params.id);
-    res.status(status).send(message);
+    res.status(status).json({message});
  })
 
  router.put('/edit/:id', async (req, res) => {

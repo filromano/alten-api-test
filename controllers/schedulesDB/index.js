@@ -44,6 +44,7 @@ const cancelSchedule = async (id) => {
 const editSchedule = async (id, checkIn, checkOut, days) => {
     try {
         const edit = await scheduleModel.updateOne({ id }, { checkIn, checkOut, days });
+        console.log(edit)
         return edit;
     }
     catch(err) {

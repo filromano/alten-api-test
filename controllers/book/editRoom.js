@@ -20,9 +20,16 @@ const editRoom = async ({checkIn, checkOut }, id) => {
             break;
         case 'success':
             const editResponse = await editSchedule(id, checkIn, checkOut, days);
-            if (editResponse.nModified > 0) {
+            if (editResponse.ok > 0 && editResponse.nModified > 0) {
+                status = 200;
+                message = 'Reservation modified';
+                args = {
+                    checkIn,
+                    checkOut
+                };
+            } else if (editResponse.nModified === 0 && editResponse.ok > 0) {
                     status = 200;
-                    message = 'Reservation modified';
+                    message = 'Reservation kept the same value';
                     args = {
                         checkIn,
                         checkOut
