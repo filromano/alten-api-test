@@ -8,8 +8,9 @@ const validateDate = (req, res, next) => {
         let checkOut = req.body.checkOut.split('T');
         if (checkIn[1] !== pattern || checkOut[1] !== pattern) {
             res.status(400).json({message: 'Invalid format'})
+        } else {
+            next();
         }
-        next();
     }
 };
 

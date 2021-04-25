@@ -22,6 +22,11 @@ PS: You have to run MongoDB in your local machine since the project is connectin
 
 PS: Database name using in the project is `hotel`, and collection is `schedules`
 
+The format of the date that should be send is in the examples below, if the format is not respected you will receive an error of invalid format
+```
+"YYYY-MM-DDT00:00.000Z"
+```
+
 # Endpoints:
 
 ## Get available days
