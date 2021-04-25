@@ -22,7 +22,7 @@ router.post('/add', validateDate, async (req, res) => {
     res.status(status).json({message});
  })
 
- router.put('/edit/:id', async (req, res) => {
+ router.put('/edit/:id', validateDate, async (req, res) => {
     const { message, status, args } = await editRoom(req.body, req.params.id);
     res.status(status).json({message, args});
  })
