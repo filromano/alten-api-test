@@ -9,6 +9,11 @@ const scheduleSchema = new Schema({
   checkOut: {
     type: String,
     required: true
+  },
+  days: {
+    type: Number,
+    required: true,
+    max: 3
   }
 });
 

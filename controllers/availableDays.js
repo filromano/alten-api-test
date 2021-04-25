@@ -1,14 +1,8 @@
-const loopDays = (inDay, outDay) => {
-    const days = [];
-    const lastDay = new Date(outDay)
-    for(let d = new Date(inDay); d <= lastDay; d.setDate(d.getDate() + 1)) {
-        const day = d.toUTCString()
-        days.push(day)
-    }
-    return days;
-}
+const { loopDays } = require('./common');
+const { getScheduled } = require('./schedules');
 
-const checkAvailability = (data) => {
+const checkAvailability = async () => {
+    const data = await getScheduled();
     const today = new Date();
     const year = today.getFullYear();
     const month = today.getMonth();
