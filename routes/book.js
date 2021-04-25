@@ -5,13 +5,14 @@ const {
     bookRoom,
     cancelRoom,
     editRoom } = require('../controllers/book/');
+const validateDate = require('../middleware/validadeDate');
 
 router.get('/availability', async (req, res) => {
     const availableDays = await checkAvailability();
     res.json(availableDays);
  });
 
-router.post('/add', async (req, res) => {
+router.post('/add', validateDate, async (req, res) => {
     const { message, status, args } = await bookRoom(req.body);
     res.status(status).json({message, args});
  });
