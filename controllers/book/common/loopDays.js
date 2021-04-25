@@ -8,4 +8,4 @@ const loopDays = (inDay, outDay) => {
     return days;
 }
 
-module.exports = { loopDays };
+module.exports = loopDays;

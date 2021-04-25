@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const { 
-    checkAvailability,
+const { checkAvailability } = require('../controllers/book/common/');
+const {
     bookRoom,
     cancelRoom,
     editRoom } = require('../controllers/book/');
@@ -27,4 +27,3 @@ router.post('/add', async (req, res) => {
  })
 
  module.exports = router;
- 
